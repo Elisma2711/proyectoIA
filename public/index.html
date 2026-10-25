@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f6f8">
+    <meta name="description" content="Clasifica artículos en zonas con ayuda de Gemini y tus etiquetas.">
+    <title>Ordena · Clasificador de artículos</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="./js/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Ordena, inicio">
+        <span class="brand-mark" aria-hidden="true">O</span>
+        <span>ordena<span class="brand-dot">.</span></span>
+      </a>
+      <span class="topbar-note">CLASIFICADOR INTELIGENTE</span>
+    </header>
+
+    <main class="page">
+      <section class="intro">
+        <p class="eyebrow">ORGANIZÁ TU INVENTARIO</p>
+        <h1>Cada artículo,<br><span>en su lugar.</span></h1>
+        <p class="intro-copy">Pegá tu lista y Gemini la ordena por zonas. Corregí lo que haga falta: la próxima clasificación tendrá en cuenta tus etiquetas.</p>
+      </section>
+
+      <section class="workspace" aria-label="Clasificar artículos">
+        <form id="classify-form" class="input-panel">
+          <label class="field-label" for="articles">1. Tu lista de artículos <span>uno por línea</span></label>
+          <textarea id="articles" name="articles" rows="7" maxlength="20000" placeholder="Ejemplo:&#10;Camiseta de algodón talle M&#10;Botella térmica de 1 litro&#10;Lámpara de escritorio" required></textarea>
+          <div class="field-hint"><span>Podés pegar hasta 100 artículos.</span><span id="article-count">0 artículos</span></div>
+
+          <label class="field-label zones-label" for="zones">2. Zonas disponibles <span>separadas por línea o coma</span></label>
+          <textarea id="zones" name="zones" rows="3" maxlength="2000" required>Zona 1
+Zona 2
+Zona 3</textarea>
+          <p class="field-hint">Usá los nombres reales de las zonas de tu negocio; Gemini elegirá entre ellas.</p>
+
+          <button id="classify-button" class="primary-button" type="submit">
+            <span>Clasificar artículos</span><span aria-hidden="true">→</span>
+          </button>
+          <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+        </form>
+
+        <section id="results-panel" class="results-panel" aria-label="Resultados" hidden>
+          <div class="results-heading">
+            <div>
+              <p class="eyebrow">RESULTADO</p>
+              <h2>Artículos por zona</h2>
+              <p id="results-summary" class="results-summary"></p>
+            </div>
+            <button id="download-button" class="secondary-button" type="button">Descargar CSV</button>
+          </div>
+          <div id="zone-groups" class="zone-groups"></div>
+          <div class="learning-bar">
+            <div>
+              <strong>¿Corregiste alguna etiqueta?</strong>
+              <p id="learning-copy">Guardá tus correcciones para usarlas como ejemplos la próxima vez.</p>
+            </div>
+            <button id="save-labels-button" class="secondary-button" type="button" disabled>Guardar etiquetas</button>
+          </div>
+        </section>
+      </section>
+
+      <aside class="privacy-note">
+        <span class="privacy-icon" aria-hidden="true">i</span>
+        <p><strong>Sin base de datos:</strong> tus etiquetas aprendidas se guardan solo en este navegador. La clave de Gemini se mantiene en el servidor.</p>
+      </aside>
+      <p class="memory-note"><span id="memory-count">0</span> etiquetas guardadas en este dispositivo</p>
+    </main>
+
+    <footer class="footer">
+      <span>ORDENA · CLASIFICACIÓN ASISTIDA POR IA</span>
+      <span>Las sugerencias de IA se pueden revisar y corregir.</span>
+    </footer>
+  </body>
+</html>
